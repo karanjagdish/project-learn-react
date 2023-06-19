@@ -1,34 +1,26 @@
-import Directory from "./components/directory/directory.component";
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./routes/home/home.component";
+import Navigation from "./routes/navigation/navigation.component";
+
+const Shop = () => {
+  return <h1>I am the shop page</h1>;
+};
 
 const App = () => {
-  const categories = [
-    {
-      id: 1,
-      title: "hats",
-      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-    },
-    {
-      id: 2,
-      title: "jackets",
-      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-    },
-    {
-      id: 3,
-      title: "sneakers",
-      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-    },
-    {
-      id: 4,
-      title: "womens",
-      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-    },
-    {
-      id: 5,
-      title: "mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-    },
-  ];
-  return <Directory categories={categories} />;
+  // Declare your matching path as a Route element under the Routes Element
+  // If you want to render a componentB along with componentA such that both components render
+  // then nest componentB under Route of componentA and use the Outlet component in componentA
+  return (
+    <Routes>
+      <Route path="/" element={<Navigation />}>
+        {/* In order to ensure home is also displayed on the '/' path, instead of 
+        pattern matching on path we set index=true */}
+        <Route index element={<Home />} />
+        <Route path="shop" element={<Shop />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;
