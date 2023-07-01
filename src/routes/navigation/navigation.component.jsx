@@ -1,9 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import { ReactComponent as CrwnLogo } from "../../assests/crown.svg";
 
 import "./navigation.styles.scss";
+import { UserContext } from "../../contexts/user.context";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 /**
  * Outlet lets you display nested routes contents along with
@@ -13,6 +15,16 @@ import "./navigation.styles.scss";
  */
 
 const Navigation = () => {
+  const {
+    currentUser,
+    // setCurrentUser
+  } = useContext(UserContext);
+
+  const signOutHandler = async () => {
+    await signOutUser();
+    // setCurrentUser(null);
+  };
+
   return (
     // <div>
     // Fragement avoids the need to return a single top level element
@@ -23,11 +35,17 @@ const Navigation = () => {
         </Link>
         <div className="nav-links-container">
           <Link className="nav-link" to="/shop">
-            Shop
+            SHOP
           </Link>
-          <Link className="nav-link" to="/auth">
-            Sign-In
-          </Link>
+          {currentUser ? (
+            <span className="nav-link" onClick={signOutHandler}>
+              SIGN OUT
+            </span>
+          ) : (
+            <Link className="nav-link" to="/auth">
+              SIGN IN
+            </Link>
+          )}
         </div>
       </div>
       <Outlet />
