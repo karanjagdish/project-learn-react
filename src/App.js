@@ -16,7 +16,9 @@ const App = () => {
         {/* In order to ensure home is also displayed on the '/' path, instead of 
         pattern matching on path we set index=true */}
         <Route index element={<Home />} />
-        <Route path="shop" element={<Shop />} />
+        {/* Match the path /shop/<any> and render <Shop> as we have nested routes 
+        defined inside <Shop> that will map any path after /shop */}
+        <Route path="shop/*" element={<Shop />} />
         <Route path="auth" element={<Authentication />} />
         <Route path="checkout" element={<Checkout />} />
       </Route>
