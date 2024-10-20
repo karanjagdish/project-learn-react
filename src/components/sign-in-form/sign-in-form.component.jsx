@@ -2,7 +2,9 @@ import {
   useState,
   // useContext
 } from "react";
-import Button from "../../components/button/button.component";
+import Button, {
+  BUTTON_TYPE_CLASSES,
+} from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 // import { UserContext } from "../../contexts/user.context";
 
@@ -102,7 +104,11 @@ const SignInForm = () => {
           <Button type="submit">Sign In</Button>
           {/* Buttons by default are the type of submit and hence 
           submit the form unless type is changed */}
-          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
+          <Button
+            type="button"
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            onClick={signInWithGoogle}
+          >
             Google Sign In
           </Button>
         </div>
