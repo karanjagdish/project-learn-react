@@ -15,6 +15,8 @@ import {
   NavLinks,
   NavigationContainer,
 } from "./navigation.styles";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 /**
  * Outlet lets you display nested routes contents along with
@@ -24,11 +26,13 @@ import {
  */
 
 const Navigation = () => {
-  const {
-    currentUser,
-    // setCurrentUser
-  } = useContext(UserContext);
+  // const {
+  //   currentUser,
+  //   // setCurrentUser
+  // } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
+
+  const currentUser = useSelector(selectCurrentUser);
 
   const signOutHandler = async () => {
     await signOutUser();
