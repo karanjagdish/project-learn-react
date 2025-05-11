@@ -15,19 +15,19 @@ import { store } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //Use browser router to wrap the entire application in order to enable routes
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        {/* <UserProvider> */}
-        <CategoriesProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </CategoriesProvider>
-        {/* </UserProvider> */}
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <BrowserRouter>
+                {/* <UserProvider> */}
+                <CategoriesProvider>
+                    <CartProvider>
+                        <App />
+                    </CartProvider>
+                </CategoriesProvider>
+                {/* </UserProvider> */}
+            </BrowserRouter>
+        </Provider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

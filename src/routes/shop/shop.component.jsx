@@ -8,27 +8,27 @@ import { setCategories } from "../../store/categories/category.action";
 import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
 const Shop = () => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    const getCategoriesMap = async () => {
-      const categoriesArray = await getCategoriesAndDocuments();
-      console.log(categoriesArray);
-      dispatch(setCategories(categoriesArray));
-    };
+    useEffect(() => {
+        const getCategoriesMap = async () => {
+            const categoriesArray = await getCategoriesAndDocuments();
+            console.log(categoriesArray);
+            dispatch(setCategories(categoriesArray));
+        };
 
-    getCategoriesMap();
-  }, [dispatch]);
+        getCategoriesMap();
+    }, [dispatch]);
 
-  // Cannot use nested routes unless the parent is a route
-  return (
-    <Routes>
-      <Route index element={<CategoriesPreview />} />
-      {/* always access to the url as param for 
+    // Cannot use nested routes unless the parent is a route
+    return (
+        <Routes>
+            <Route index element={<CategoriesPreview />} />
+            {/* always access to the url as param for 
        /shop/<category-name> */}
-      <Route path=":category" element={<Category />} />
-    </Routes>
-  );
+            <Route path=":category" element={<Category />} />
+        </Routes>
+    );
 };
 
 export default Shop;

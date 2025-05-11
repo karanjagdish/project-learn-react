@@ -10,10 +10,10 @@ import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropDown from "../../components/cart-dropdown/cart-dropdown.component";
 import { CartContext } from "../../contexts/cart.context";
 import {
-  LogoContainer,
-  NavLink,
-  NavLinks,
-  NavigationContainer,
+    LogoContainer,
+    NavLink,
+    NavLinks,
+    NavigationContainer,
 } from "./navigation.styles";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
@@ -26,44 +26,44 @@ import { selectCurrentUser } from "../../store/user/user.selector";
  */
 
 const Navigation = () => {
-  // const {
-  //   currentUser,
-  //   // setCurrentUser
-  // } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+    // const {
+    //   currentUser,
+    //   // setCurrentUser
+    // } = useContext(UserContext);
+    const { isCartOpen } = useContext(CartContext);
 
-  const currentUser = useSelector(selectCurrentUser);
+    const currentUser = useSelector(selectCurrentUser);
 
-  const signOutHandler = async () => {
-    await signOutUser();
-    // setCurrentUser(null);
-  };
+    const signOutHandler = async () => {
+        await signOutUser();
+        // setCurrentUser(null);
+    };
 
-  return (
-    // <div>
-    // Fragement avoids the need to return a single top level element
-    <Fragment>
-      <NavigationContainer>
-        <LogoContainer to="/">
-          <CrwnLogo />
-        </LogoContainer>
-        <NavLinks>
-          <NavLink to="/shop">SHOP</NavLink>
-          {currentUser ? (
-            <NavLink as="span" onClick={signOutHandler}>
-              SIGN OUT
-            </NavLink>
-          ) : (
-            <NavLink to="/auth">SIGN IN</NavLink>
-          )}
-          <CartIcon />
-        </NavLinks>
-        {isCartOpen && <CartDropDown />}
-      </NavigationContainer>
-      <Outlet />
-    </Fragment>
-    // </div>
-  );
+    return (
+        // <div>
+        // Fragement avoids the need to return a single top level element
+        <Fragment>
+            <NavigationContainer>
+                <LogoContainer to="/">
+                    <CrwnLogo />
+                </LogoContainer>
+                <NavLinks>
+                    <NavLink to="/shop">SHOP</NavLink>
+                    {currentUser ? (
+                        <NavLink as="span" onClick={signOutHandler}>
+                            SIGN OUT
+                        </NavLink>
+                    ) : (
+                        <NavLink to="/auth">SIGN IN</NavLink>
+                    )}
+                    <CartIcon />
+                </NavLinks>
+                {isCartOpen && <CartDropDown />}
+            </NavigationContainer>
+            <Outlet />
+        </Fragment>
+        // </div>
+    );
 };
 
 export default Navigation;
