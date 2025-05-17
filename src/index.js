@@ -7,19 +7,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.scss";
-import { CartProvider } from "./contexts/cart.context";
-import { store } from "./store/store";
+import { persistor, store } from "./store/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //Use browser router to wrap the entire application in order to enable routes
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <BrowserRouter>
-                <CartProvider>
+            <PersistGate loading={null} persistor={persistor}>
+                <BrowserRouter>
                     <App />
-                </CartProvider>
-            </BrowserRouter>
+                </BrowserRouter>
+            </PersistGate>
         </Provider>
     </React.StrictMode>
 );
