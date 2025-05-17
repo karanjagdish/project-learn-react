@@ -25,7 +25,7 @@ const App = () => {
         });
 
         return unsubscribe;
-    }, []);
+    }, [dispatch]);
 
     // Declare your matching path as a Route element under the Routes Element
     // If you want to render a componentB along with componentA such that both components render
