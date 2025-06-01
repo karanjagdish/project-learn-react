@@ -8,15 +8,12 @@ import Button, {
 import FormInput from "../../components/form-input/form-input.component";
 // import { UserContext } from "../../contexts/user.context";
 
-import {
-    // auth,
-    // createUserDocumentFromAuth,
-    signInAuthUserWithEmailAndPassword,
-    signInWithGooglePopup,
-    // signInWithGoogleRedirect,
-} from "../../utils/firebase/firebase.utils";
-
 import "./sign-in-form.styles.scss";
+import { useDispatch } from "react-redux";
+import {
+    emailSignInStart,
+    googleSignInStart,
+} from "../../store/user/user.action";
 
 const defaultFormFields = {
     email: "",
@@ -24,6 +21,7 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+    const dispatch = useDispatch();
     // Sign in with redirect example
     // useEffect(() => {
     //   const getResult = async () => {
@@ -42,8 +40,9 @@ const SignInForm = () => {
     // const { setCurrentUser } = useContext(UserContext);
 
     const signInWithGoogle = async () => {
+        dispatch(googleSignInStart());
         // const { user } =
-        await signInWithGooglePopup();
+        // await signInWithGooglePopup();
         // await createUserDocumentFromAuth(user);
         // setCurrentUser(user);
     };
@@ -64,7 +63,8 @@ const SignInForm = () => {
 
         try {
             // const { user } =
-            await signInAuthUserWithEmailAndPassword(email, password);
+            // await signInAuthUserWithEmailAndPassword(email, password);
+            dispatch(emailSignInStart(email, password));
             // setCurrentUser(user);
             resetFormFields();
         } catch (error) {
