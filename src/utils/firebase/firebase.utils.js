@@ -112,7 +112,7 @@ export const createUserDocumentFromAuth = async (
         }
     }
 
-    return userSnapshot;
+    return userDocRef;
 };
 
 export const creathAuthUserWithEmailAndPassword = async (email, password) => {
@@ -129,16 +129,3 @@ export const signOutUser = () => signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
     onAuthStateChanged(auth, callback);
-
-export const getCurrentUser = () => {
-    return new Promise((resolve, reject) => {
-        const unsubscribe = onAuthStateChanged(
-            auth,
-            (userAuth) => {
-                unsubscribe();
-                resolve(userAuth);
-            },
-            reject
-        );
-    });
-};
